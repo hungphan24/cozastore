@@ -1,8 +1,8 @@
-package com.hung.cozastore.service.imp;
+package com.hung.cozastore.service.interf;
 
 import com.hung.cozastore.payload.request.SignupRequest;
 
-public interface UserServiceImp {
+public interface IUserService {
 
     boolean addUser(SignupRequest request);
 }

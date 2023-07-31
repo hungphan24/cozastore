@@ -1,16 +1,16 @@
 package com.hung.cozastore.service;
 
 import com.hung.cozastore.entity.UserEntity;
-import com.hung.cozastore.config.SecurityConfig;
+import com.hung.cozastore.exception.customException;
 import com.hung.cozastore.payload.request.SignupRequest;
 import com.hung.cozastore.repository.UserRepository;
-import com.hung.cozastore.service.imp.UserServiceImp;
+import com.hung.cozastore.service.interf.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService implements UserServiceImp {
+public class UserService implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -30,7 +30,7 @@ public class UserService implements UserServiceImp {
             userRepository.save(user);
             isSuccess = true;
         } catch (Exception e) {
-
+            throw new customException("Loi them user" + e.getMessage());
         }
 
         return isSuccess;

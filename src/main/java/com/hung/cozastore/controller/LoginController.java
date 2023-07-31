@@ -2,7 +2,7 @@ package com.hung.cozastore.controller;
 
 import com.hung.cozastore.payload.request.SignupRequest;
 import com.hung.cozastore.payload.response.BaseResponse;
-import com.hung.cozastore.service.imp.UserServiceImp;
+import com.hung.cozastore.service.interf.IUserService;
 import com.hung.cozastore.utils.JwtHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,7 @@ public class LoginController {
     private JwtHelper jwtHelper;
 
     @Autowired
-    private UserServiceImp userServiceImp;
+    private IUserService IUserService;
 
     @RequestMapping(value = "/signin", method = RequestMethod.POST)
     public ResponseEntity<?> signin(@RequestParam String email, @RequestParam String password) {
@@ -42,7 +42,7 @@ public class LoginController {
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ResponseEntity<?> signup(@Valid SignupRequest request) {
-        boolean isSuccess = userServiceImp.addUser(request);
+        boolean isSuccess = IUserService.addUser(request);
 
         BaseResponse response = new BaseResponse();
         response.setStatusCode(200);
